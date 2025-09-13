@@ -11,66 +11,65 @@ The goal is to generate textual descriptions for medical images, including X-ray
 - Load medical images and captions from **ROCOv2**.
 - Resize images to **224×224 pixels**.
 - Process captions using **BlipProcessor**.
-- Split dataset into **training** and **test** sets.
+- Split dataset into **training and test sets**.
 - Use **10% of training data** for faster training on limited GPU.
 
----
-
 ### 2. Model Architecture (BLIP + LoRA)
-- **Encoder**: Vision Transformer (BLIP)  
-- **Decoder**: Text generation with GPT  
+- **Encoder**: Vision Transformer (BLIP)
+- **Decoder**: Text generation with GPT
 - **LoRA Fine-Tuning**: Applied to attention layers (query & key) to reduce trainable parameters and memory usage.
 
----
-
 ### 3. Training
-- Optimizer: **AdamW**  
-- Scheduler: **Linear**  
-- Batch size: **3**  
-- Epochs: **4 and 6** (10% of data)  
+- **Optimizer**: AdamW
+- **Scheduler**: Linear
+- **Batch size**: 3
+- **Epochs**: 4 and 6 (10% of data)
 - Save model and optimizer states after each epoch.
 
----
-
 ### 4. Evaluation
-- Generate captions for **test images**.  
-- Metrics:
-  - **BLEU (1-4)**  
-  - **METEOR**  
-  - **ROUGE-L**  
-  - **CIDEr**
-
----
+- Generate captions for test images.
+- **Metrics**:
+  - BLEU (1-4)
+  - METEOR
+  - ROUGE-L
+  - CIDEr
 
 ### 5. Results
-| Metric      | BLIP 4 Epochs | BLIP 6 Epochs | Without Fine-tune |
-|------------|---------------|---------------|-----------------|
-| BLEU-1     | 0.0470        | 0.0545        | 0.0433          |
-| BLEU-2     | 0.0222        | 0.0255        | 0.0151          |
-| METEOR     | 0.0270        | 0.0278        | 0.0171          |
-| ROUGE-L    | 0.0882        | 0.0892        | 0.0812          |
-| CIDEr      | 0.0387        | 0.0401        | 0.0056          |
 
----
+| Metric   | BLIP 4 Epochs | BLIP 6 Epochs | Without Fine-tune |
+|----------|---------------|---------------|------------------|
+| BLEU-1   | 0.0470        | 0.0545        | 0.0433           |
+| BLEU-2   | 0.0222        | 0.0255        | 0.0151           |
+| METEOR   | 0.0270        | 0.0278        | 0.0171           |
+| ROUGE-L  | 0.0882        | 0.0892        | 0.0812           |
+| CIDEr    | 0.0387        | 0.0401        | 0.0056           |
 
-## Future Improvements
-- Train with **larger data** (>10%) for better results.  
-- Explore other **Vision Transformer encoders**.  
-- Tune **hyperparameters** and use **longer epochs**.  
+### 6. Future Improvements
+- Train with **larger data (>10%)** for better results.
+- Explore other **Vision Transformer encoders**.
+- Tune hyperparameters and use longer epochs.
 - Apply **data augmentation**.
 
 ---
 
 ## Dataset
-**ROCOv2: Radiology Objects in COntext Version 2**  
-- 79,789 radiological images with captions and clinical concepts  
-- Seven clinical modalities, manually curated medical concepts  
-- Suitable for **image captioning** and **multi-label classification**
+**ROCOv2: Radiology Objects in Context Version 2**
+- 79,789 radiological images with captions and clinical concepts
+- Seven clinical modalities, manually curated medical concepts
+- Suitable for image captioning and multi-label classification
 
-[Dataset Link](https://zenodo.org/records/10821435)  
+**Dataset Link**: [ROCOv2 Dataset](https://zenodo.org/records/10821435)
 
-**Citation (APA):**  
+**Citation (APA):**
 > Johannes Rückert, Louise Bloch, Raphael Brüngel, Ahmad Idrissi-Yaghir, Henning Schäfer, Cynthia S. Schmidt, Sven Koitka, Obioma Pelka, Asma Ben Abacha, Alba Garcia Seco de Herrera, Henning Müller, Peter A. Horn, Felix Nensa, & Christoph M. Friedrich. (2023). ROCOv2: Radiology Objects in COntext Version 2, An Updated Multimodal Image Dataset [Data set]. *Scientific Data (2.0.1)*. Zenodo. https://doi.org/10.5281/zenodo.10821435
+
+---
+
+## Dataset License
+- **License**: Creative Commons Attribution Non-Commercial 4.0 International (CC BY-NC 4.0)  
+- The dataset may be used for **research and educational purposes only**; **commercial use is not allowed**.  
+- Users must **cite the original dataset** when using it in publications or projects.  
+- Official dataset page: [ROCOv2 Dataset](https://zenodo.org/records/10821435)
 
 ---
 
